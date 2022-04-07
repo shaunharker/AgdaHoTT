@@ -160,33 +160,33 @@ Idea·2·11·1 :
 
 Idea·2·11·1 f [ c , a ] = [ c , f c a ]
 
-Idea·2·11·2 :
-  {ℓ₁ ℓ₂ ℓ₃ : Level} →
-  {C : Set ℓ₁} →
-  {A : C → Set ℓ₂} →
-  {B : C → Set ℓ₃} →
-  (f : Π C (λ c → A c → B c)) →
-  let
-    F : (Σ C (λ c → A c)) → (Σ C (λ c → B c))
-    F = λ { [ c , a ] → [ c , f c a ] }
-  in
-  isequiv F →
-  Π C (λ c → isequiv (f c))
-
-Idea·2·11·2 {C = C} {A = A} {B = B} f [ eqv , refl ] c = {!  qip  !}
-  where
-    qip = ≃·to·QIP eqv
-    F = QIP.f qip
-    G = QIP.g qip
-    α = QIP.α qip
-    β = QIP.β qip
-    G·fst : Π (B c) λ b → Σ.fst (G [ c , b ]) ≡ c
-    G·fst b = ap Σ.fst (α [ c , b ] )
-    fc : A c → B c
-    fc = λ a → Σ.snd (F [ c , a ])
-    gc : B c → A c
-    gc = λ b → transport A (G·fst b) (Σ.snd (G [ c , b ]))
-    αc : fc ∘ gc ∼ id
-    αc = λ b → {! ap Σ.snd (α [ c , b ])  !} -- almost completely worthless error messages.
-    βc : gc ∘ fc ∼ id
-    βc = {!   !}
+-- Idea·2·11·2 :
+--   {ℓ₁ ℓ₂ ℓ₃ : Level} →
+--   {C : Set ℓ₁} →
+--   {A : C → Set ℓ₂} →
+--   {B : C → Set ℓ₃} →
+--   (f : Π C (λ c → A c → B c)) →
+--   let
+--     F : (Σ C (λ c → A c)) → (Σ C (λ c → B c))
+--     F = λ { [ c , a ] → [ c , f c a ] }
+--   in
+--   isequiv F →
+--   Π C (λ c → isequiv (f c))
+--
+-- Idea·2·11·2 {C = C} {A = A} {B = B} f [ eqv , refl ] c = {!  qip  !}
+--   where
+--     qip = ≃·to·QIP eqv
+--     F = QIP.f qip
+--     G = QIP.g qip
+--     α = QIP.α qip
+--     β = QIP.β qip
+--     G·fst : Π (B c) λ b → Σ.fst (G [ c , b ]) ≡ c
+--     G·fst b = ap Σ.fst (α [ c , b ] )
+--     fc : A c → B c
+--     fc = λ a → Σ.snd (F [ c , a ])
+--     gc : B c → A c
+--     gc = λ b → transport A (G·fst b) (Σ.snd (G [ c , b ]))
+--     αc : fc ∘ gc ∼ id
+--     αc = λ b → {! ap Σ.snd (α [ c , b ])  !} -- almost completely worthless error messages.
+--     βc : gc ∘ fc ∼ id
+--     βc = {!   !}
